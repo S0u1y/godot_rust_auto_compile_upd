@@ -24,7 +24,6 @@ func _check_for_settings() -> bool:
 			)
 		return false
 	
-	# if no cargo or manifest path just skip building the library
 #	Copied from rust_tools <3
 	if cargo_path.contains("/") or cargo_path.contains("\\"):
 		if not FileAccess.file_exists(cargo_path):
@@ -76,7 +75,8 @@ func _build():
 	var output = []
 	var cargo_path = ProjectSettings.get_setting("rust/cargo_path")
 	var manifest_path = ProjectSettings.get_setting("rust/manifest_path")
-	
+
+# 	if no cargo or manifest path just skip building the library
 	if not _check_for_settings():
 		return
 	
